@@ -1,0 +1,17 @@
+{% extends "main.html" %}
+{% block title %}Edit User | MSMS{% endblock %}
+{% block content %}
+<h1>Edit User {{user.first_name}} {{user.last_name}}</h1>
+<form action="{% url 'edit_user' user.id %}" method="post" class="border mx-5">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <input class="btn btn-primary" type="submit" value="Apply Changes">
+    {% if can_delete %}
+    <a href="{% url 'delete_user' user.id %}" class="btn btn-danger">Delete User</a>
+    {% else %}
+    <a href="#" class="btn btn-danger disabled">Delete User</a>
+    {% endif %}
+</form>
+{% endblock %}

@@ -1,0 +1,71 @@
+
+input[type=text]{
+  width:100%;
+  border: 2px solid #FA991C;
+  padding: 5px 10px;
+  background-color: #FBF3F2;
+}
+
+input[type=text]:focus {
+  border: 3px solid #032539;
+}
+
+input[type=number]{
+  width:100%;
+  border: 2px solid #FA991C;
+  padding: 5px 10px;
+  background-color: #FBF3F2;
+}
+
+input[type=number]:focus {
+  border: 3px solid #032539;
+}
+
+input[type=checkbox]{
+  margin: 5px 10px;
+  accent-color: #FA991C;
+  width: 25px;
+}
+
+input[type=submit]{
+  background-color: #1C768F;
+  margin-top: 8px;
+}
+
+input[type=submit]:hover{
+  background-color: #032539;
+}
+
+select {
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #FBF3F2;
+}
+
+h1{
+  color: #1C768F;
+  text-align:left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+table{
+  left: 50%;
+  top: 50%;
+}
+
+th{
+  color: #032539;
+}
+
+label{
+  color: #032539;
+  font-size: 20px;
+}
+
+div{
+  margin-top:5px;
+  margin-bottom:5px;
+}

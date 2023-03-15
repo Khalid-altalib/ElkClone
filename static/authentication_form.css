@@ -1,0 +1,60 @@
+
+input[type=text]{
+  width:100%;
+  border: 2px solid #FA991C;
+  padding: 5px 10px;
+  background-color: #FBF3F2;
+}
+
+input[type=text]:focus {
+  border: 3px solid #032539;
+}
+
+input[type=password]{
+  width:100%;
+  border: 2px solid #FA991C;
+  padding: 5px 10px;
+  background-color: #FBF3F2;
+}
+
+input[type=password]:focus {
+  border: 3px solid #032539;
+}
+
+input[type=email]{
+  width:100%;
+  border: 2px solid #FA991C;
+  padding: 5px 10px;
+  background-color: #FBF3F2;
+}
+
+input[type=email]:focus {
+  border: 3px solid #032539;
+}
+
+input[type=submit]{
+  color: #FFFFFF;
+  background-color: #1C768F;
+}
+
+input[type=submit]:hover{
+  color: #FFFFFF;
+  background-color: #032539;
+}
+
+h1{
+  color: #1C768F;
+  text-align:left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+label{
+  color: #032539;
+  font-size: 20px;
+}
+
+div{
+  margin-top:5px;
+  margin-bottom:5px;
+}

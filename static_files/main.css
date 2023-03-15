@@ -1,0 +1,13 @@
+.white-text{
+  color:white;
+}
+.darkBackground {
+    background-color: #032539;
+    padding: 8px 12px;
+  }
+.large-font{
+  font-size:30px;
+}
+.bold{
+  font-weight: bold;
+}

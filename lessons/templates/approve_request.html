@@ -1,0 +1,65 @@
+{% extends 'main.html' %}
+{% block title %}Approve requests | MSMS{% endblock %}
+{% block content %}
+
+{% load static %}
+<link href="{% static 'request_form.css' %}" rel="stylesheet">
+
+<h1>
+  Approve your request
+</h1>
+
+<table classt="table" style="width:100%">
+  <thead>
+    <th scope="col" style="width:50%"></th>
+    <th scope="col" style="width:50%"></th>
+  </thead>
+
+  <tr>
+    <th scope="row">Student:</th>
+    <td>{% if request.child %}{{ request.child.name }}{% else %}{{request.user.first_name}} {{request.user.last_name }}{% endif %}</td>
+  </tr>
+
+  <tr>
+    <th scope="row">Availability:</th>
+    <td>{{request.availability}}</td>
+  </tr>
+
+  <tr>
+    <th scope="row">Number of lessons:</th>
+    <td>{{request.number_of_lessons}}</td>
+  </tr>
+
+  <tr>
+    <th scope="row">Interval:</th>
+    <td>{{request.interval}}</td>
+  </tr>
+
+  <tr>
+    <th scope="row">Duration:</th>
+    <td>{{request.duration}}</td>
+  </tr>
+
+  <tr>
+    <th scope="row">Lesson Content:</th>
+    <td>{{request.lesson_content}}</td>
+  </tr>
+
+  <tr>
+    <th scope="row">Teacher:</th>
+    <td>{{request.get_teacher_display}}</td>
+  </tr>
+
+</table>
+<br>
+<h1>
+  Fill in the details of the lesson
+</h1>
+<div class="container">
+  {% csrf_token %}
+  {% load crispy_forms_tags %}
+  {% crispy form %}
+</div>
+
+
+{% endblock %}

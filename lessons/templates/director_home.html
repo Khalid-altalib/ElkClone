@@ -1,0 +1,13 @@
+{% extends 'main.html' %}
+{% block title %}Admin Home | MSMS{% endblock %}
+{% block content %}
+
+<div class = "container">
+
+    {% include "partials/users_table.html" %}
+    {% include "partials/pending_requests_table.html" %}
+    {% include "partials/approved_requests_table.html" %}
+
+</div>
+
+{% endblock %}

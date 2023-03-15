@@ -1,0 +1,20 @@
+
+{% extends 'main.html' %}
+{% block title %}Make requests | MSMS{% endblock %}
+{% block content %}
+{% load static %}
+
+<link href="{% static 'request_form.css' %}" rel="stylesheet">
+
+<h1>
+  Fill in the details of your request
+</h1>
+
+<div class="container" class="align-center">
+  {% csrf_token %}
+  {% load crispy_forms_tags %}
+  {% crispy form %}
+</div>
+
+
+{% endblock %}

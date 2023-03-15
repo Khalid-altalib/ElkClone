@@ -1,0 +1,32 @@
+{% load static %}
+
+<link href="{% static 'users_table.css' %}" rel="stylesheet">
+
+<div>
+
+    {# table showing children #}
+    <div class = "col">
+        <h1>
+            Children:
+        </h1>
+    </div>
+    <table class="table table-light table-bordered table-hover table-sm table-striped">
+        <thead>
+        <tr class=tableHeader>
+            <th scope="col">Name</th>
+            <th scope="col">Edit</th>
+        </tr>
+        </thead>
+        {% for child in children %}
+        <tr>
+            <td>{{ child.name }}</td>
+            <td><a href = "{% url 'edit_child' child.id %}" class="btn btn-outline-danger">Edit</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">There are currently no children.</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>

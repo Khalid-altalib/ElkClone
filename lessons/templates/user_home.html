@@ -1,0 +1,178 @@
+{% extends 'main.html' %}
+{% block title %}User home | MSMS{% endblock %}
+{% block content %}
+{% load static %}
+
+<link href="{% static 'user_home.css' %}" rel="stylesheet">
+
+<div class = "container">
+  <div class = "row">
+    <div class = "col">
+      <h1>
+        Your balance:
+      </h1>
+      <h2>
+        ${{ balance }}
+      </h2>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class = "col">
+      <h1>
+        Your courses:
+      </h1>
+    </div>
+  </div>
+
+  <div class = "row">
+    <table class="table table-light table-bordered table-hover table-sm table-striped">
+      <thead>
+        <tr class="tableHeader">
+          <th scope="col">#</th>
+          <th scope="col">Child</th>
+          <th scope="col">Class content</th>
+          <th scope="col">Submission date</th>
+          <th scope="col" style="width:10%"></th>
+        </tr>
+      </thead>
+      {% for request in approved %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{% if request.child %}{{ request.child.name }}{% else %}None{% endif %}</td>
+        <td>{{ request.lesson_content }}</td>
+        <td>{{ request.submission_date }}</td>
+        <td><a href = "{% url 'see_more_request' requestId=request.request_id %}" class="btn btn-outline-warning">See more</a></td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4">There are currently requests that have been approved</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+    <div class = "row">
+      <div class = "col">
+        <h1>
+          Your pending requests:
+        </h1>
+      </div>
+    </div>
+
+    <div class = "row">
+      <table class="table table-light table-bordered table-hover table-sm table-striped">
+        <thead>
+          <tr class="tableHeader">
+            <th scope="col">#</th>
+            <th scope="col">Child</th>
+            <th scope="col">Class content</th>
+            <th scope="col">Submission date</th>
+            <th scope="col" style="width:7%"></th>
+            <th scope="col" style="width:8%"></th>
+            <th scope="col" style="width:10%"></th>
+          </tr>
+        </thead>
+        {% for request in pending %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{% if request.child %}{{ request.child.name }}{% else %}None{% endif %}</td>
+          <td>{{ request.lesson_content }}</td>
+          <td>{{ request.submission_date}}</td>
+          <td><a href = '{% url 'edit_request' requestId=request.request_id %}' class="text-center btn btn-outline-warning">Edit</a></td>
+          <td><a href = '{% url 'delete' requestId=request.request_id %}' class="btn btn-outline-warning">Delete</a></td>
+          <td><a href = '{% url 'see_more_request' requestId=request.request_id %}' class="text-center btn btn-outline-warning">See more</a></td>
+
+        </tr>
+        {% empty %}
+          <td colspan="6">There are currently no requests waiting to be approved</td>
+        {% endfor %}
+      </table>
+    </div>
+
+    <div class = "row">
+      <div class = "col">
+        <a href="{% url 'make_request' %}" class="btn btn-lg btn-info" id="requestButton">
+         Make request
+        </a>
+      </div>
+    </div>
+
+  {% include 'partials/children_table.html' %}
+  <div class = "row">
+    <div class = "col">
+      <a href="{% url 'register_child' %}" class="btn btn-lg btn-info" id="addChildButton">
+        Register New Child
+      </a>
+    </div>
+  </div>
+
+    <div class = "row">
+      <div class = "col">
+        <h1>
+          Your invoices:
+        </h1>
+      </div>
+    </div>
+
+    <div class = "row">
+      <table class="table table-light">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Invoice Number</th>
+            <th scope="col">Request ID</th>
+            <th scope="col">Amount To Be Paid</th>
+            <th scope="col">Issued on</th>
+          </tr>
+        </thead>
+        {% for invoice in invoices %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ invoice.invoice_number }}</td>
+          <td>{{ invoice.request.request_id }}</td>
+          <td>{{ invoice.amount_to_be_paid }}</td>
+          <td>{{ invoice.created_date }}</td>
+        </tr>
+        {% empty %}
+          <td colspan="5">There are currently no pending invoices.</td>
+        {% endfor %}
+      </table>
+    </div>
+
+    <div class = "row">
+      <div class = "col">
+        <h1>
+          Your transactions:
+        </h1>
+      </div>
+    </div>
+
+    <div class = "row">
+      <table class="table table-light">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">For Invoice No.</th>
+            <th scope="col">Amount Paid</th>
+            <th scope="col">Transaction Date</th>
+          </tr>
+        </thead>
+        {% for transaction in transactions %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ transaction.invoice.invoice_number }}</td>
+          <td>{{ transaction.amount }}</td>
+          <td>{{ transaction.date_paid }}</td>
+        </tr>
+        {% empty %}
+          <td colspan="4">There are currently no transactions made.</td>
+        {% endfor %}
+      </table>
+    </div>
+
+</div>
+
+
+
+{% endblock %}

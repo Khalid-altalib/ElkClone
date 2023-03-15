@@ -1,0 +1,16 @@
+
+{% extends 'main.html' %}
+{% block title %}Register Child | MSMS{% endblock %}
+{% block content %}
+<h1>
+  Register a new child
+</h1>
+
+<div class="container">
+  {% csrf_token %}
+  {% load crispy_forms_tags %}
+  {% crispy form %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "main.html" %}
+{% block title %}Sign Up | MSMS{% endblock %}
+{% block content %}
+
+{% load static %}
+
+<link href="{% static 'authentication_form.css' %}" rel="stylesheet">
+
+<h1>Sign Up for the Music School Management System</h1>
+<form action="{% url 'sign_up' %}" method="post" class="border mx-5">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <input type="submit" value="Sign up" class="btn btn-lg">
+</form>
+{% endblock %}

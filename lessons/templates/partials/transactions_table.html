@@ -1,0 +1,39 @@
+{# table showing transactions that have been made #}
+<div class = "row">
+    <div class = "col">
+      <h1>
+        Transactions:
+      </h1>
+    </div>
+    <table class="table table-light">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Student</th>
+          <th scope="col">Invoice Number</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Paid On</th>
+      </thead>
+      {% for transaction in transactions %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ transaction.created_by }}</td>
+        <td>{{ transaction.invoice.invoice_number }}</td>
+        <td>{{ transaction.amount }}</td>
+        <td>{{ transaction.date_paid }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5">There are currently no transactions.</td>
+      </tr>
+      {% endfor %}
+    </table>
+</div>
+
+<div class = "row">
+  <div class = "col">
+    <a href= '{% url 'create_transaction' %}' class="btn btn-lg btn-secondary">
+    Create transaction
+    </a>
+  </div>
+</div>

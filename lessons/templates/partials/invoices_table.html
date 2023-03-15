@@ -1,0 +1,35 @@
+
+
+{# table showing invoices that need to be paid #}
+<div class = "row">
+    <div class = "col">
+      <h1>
+        Invoices:
+      </h1>
+    </div>
+    <table class="table table-light">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Student</th>
+          <th scope="col">Invoice Number</th>
+          <th scope="col">Request ID</th>
+          <th scope="col">Amount To Be Paid</th>
+      </thead>
+      {% for invoice in invoices %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ invoice.request.user }}</td>
+        <td>{{ invoice.invoice_number }}</td>
+        <td>{{ invoice.request.request_id }}</td>
+        <td>{{ invoice.amount_to_be_paid }}</td>
+        <td><a href = "{% url 'delete_invoice' invoiceId=invoice.id %}" class="btn btn-secondary">Delete</a></td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6">There are currently no invoices.</td>
+      </tr>
+      {% endfor %}
+    </table>
+</div>
+

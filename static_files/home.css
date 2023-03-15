@@ -1,0 +1,17 @@
+#cover-image{
+  background: url('images/home_page.jpg') no-repeat center center fixed;
+  -webkit-background-size:cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+.font{
+  font-size: 32px;
+  color: #032539;
+  font-weight: bold;
+  text-align: center;
+}
+.space {
+  margin-top: 180px;
+  margin-bottom: 180px;
+}

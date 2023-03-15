@@ -1,0 +1,23 @@
+table{
+   left: 50%;
+   top: 50%;
+   border-collapse: collapse;
+   box-shadow: 2px 2px 12px rgba(0,0,0,0.2), -1px -1px 8px rgba(0,0,0,0);
+ }
+
+tr, td{
+  text-align: center;
+}
+
+thead th{
+  background-color: #006DCC;
+}
+
+h1{
+  color: #1C768F;
+  text-align:left;
+}
+
+.tableHeader{
+  color:#FA991C;
+}

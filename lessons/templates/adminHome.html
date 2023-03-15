@@ -1,0 +1,146 @@
+{% extends 'main.html' %}
+{% block title %}Admin Home | MSMS{% endblock %}
+{% block content %}
+
+<div class = "container">
+{# table showing requests that need to be approved #}
+  <div class = "row">
+    <div class = "col">
+      <h1>
+        Pending request for approval:
+      </h1>
+    </div>
+    <table class="table table-light">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Class content</th>
+          <th scope="col">Submission date</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      {% for request in requests %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ request.lesson_content }}</td>
+        <td>{{ request.submission_date }}</td>
+        <td><a href = "{% url 'approve' requestId=request.request_id %}" class="btn btn-secondary">Approve</a></td>
+        <td><a href = "{% url 'delete' requestId=request.request_id %}" class="btn btn-secondary">Delete</a></td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5">There are currently no requests waiting to be approved</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+ {# table showing requests that have been approved #}
+  <div class = "row">
+    <div class = "col">
+      <h1>
+        Approved Requests:
+      </h1>
+    </div>
+    <table class="table table-light">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Class content</th>
+          <th scope="col">Submission date</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      {% for request in approved %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ request.lesson_content }}</td>
+        <td>{{ request.submission_date }}</td>
+        <td></td>
+        <td><a href = "{% url 'delete_request' requestId=request.request_id %}" class="btn btn-secondary">Delete</a></td>
+        <td><a href = "{% url 'approve_request' requestId=request.request_id %}" class="btn btn-secondary">Edit</a></td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5">There are currently no approved requests</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{# table showing invoices that need to be paid #}
+  <div class = "row">
+    <div class = "col">
+      <h1>
+        Invoices:
+      </h1>
+    </div>
+    <table class="table table-light">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Student</th>
+          <th scope="col">Invoice Number</th>
+          <th scope="col">Request ID</th>
+          <th scope="col">Amount To Be Paid</th>
+      </thead>
+      {% for invoice in invoices %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ invoice.request.user }}</td>
+        <td>{{ invoice.invoice_number }}</td>
+        <td>{{ invoice.request.request_id }}</td>
+        <td>{{ invoice.amount_to_be_paid }}</td>
+        <td><a href = "{% url 'delete_invoice' invoiceId=invoice.id %}" class="btn btn-secondary">Delete</a></td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6">There are currently no invoices.</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{# table showing transaction that have been made #}
+  <div class = "row">
+    <div class = "col">
+      <h1>
+        Transactions:
+      </h1>
+    </div>
+    <table class="table table-light">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Student</th>
+          <th scope="col">Invoice Number</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Paid On</th>
+      </thead>
+      {% for transaction in transactions %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ transaction.created_by }}</td>
+        <td>{{ transaction.invoice.invoice_number }}</td>
+        <td>{{ transaction.amount }}</td>
+        <td>{{ transaction.date_paid }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5">There are currently no transactions.</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+<div class = "row">
+  <div class = "col">
+    <a href= '{% url 'create_transaction' %}' class="btn btn-lg btn-secondary">
+    Create transaction
+    </a>
+  </div>
+</div>
+
+{% endblock %}

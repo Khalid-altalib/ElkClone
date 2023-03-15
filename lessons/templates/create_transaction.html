@@ -1,0 +1,16 @@
+
+{% extends 'main.html' %}
+{% block title %} Create A Transaction| MSMS{% endblock %}
+{% block content %}
+<h1>
+  Fill in the details of a transaction
+</h1>
+
+<div class="container">
+  {% csrf_token %}
+  {% load crispy_forms_tags %}
+  {% crispy form %}
+</div>
+
+
+{% endblock %}

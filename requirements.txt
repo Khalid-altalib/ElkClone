@@ -1,0 +1,5 @@
+coverage
+Django
+Faker
+django-crispy-forms==1.14.0
+django-multiselectfield==0.1.12

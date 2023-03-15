@@ -1,0 +1,78 @@
+{% extends 'main.html' %}
+{% block title %}See more | MSMS{% endblock %}
+{% block content %}
+{% load static %}
+
+<link href="{% static 'see_more_request.css' %}" rel="stylesheet">
+
+<div class="container">
+<h1>
+  Details of your request:
+</h1>
+
+<table class = "table table-light table-bordered table-hover table-sm ">
+<!-- If the request is not approved it will show the availability, if it is approved then it shows scheduled class -->
+  {% if request.isApproved %}
+    <tr>
+      <th>Start Date:</th>
+      <td>{{request.start_Date}}</td>
+    </tr>
+
+    <tr>
+      <th>Day of week:</th>
+      <td>{{request.get_class_Day_display}}</td>
+    </tr>
+
+    <tr>
+      <th>Time of class:</th>
+      <td>{{request.class_Time}}</td>
+    </tr>
+  {% else %}
+    <tr>
+      <th >Availability:</th>
+      <td>{{request.availability}}</td>
+    </tr>
+  {% endif %}
+
+  <tr>
+    <th>Number of lessons:</th>
+    <td>{{request.number_of_lessons}}</td>
+  </tr>
+
+  <tr>
+    <th>Interval:</th>
+    <td>{{request.interval}}</td>
+  </tr>
+
+  <tr>
+    <th>Duration:</th>
+    <td>{{request.duration}}</td>
+  </tr>
+
+  <tr>
+    <th>Lesson Content:</th>
+    <td>{{request.lesson_content}}</td>
+  </tr>
+
+  <tr>
+    <th>Teacher:</th>
+    <td>{{request.teacher.first_name}} {{request.teacher.last_name}}</td>
+  </tr>
+
+  {% if request.isApproved %}
+    <tr>
+      <th>Approved:</th>
+      <td>Yes</td>
+    </tr>
+  {% else %}
+    <tr>
+      <th>Approved:</th>
+      <td>No</td>
+    </tr>
+  {% endif %}
+
+</table>
+</div>
+
+
+{% endblock %}

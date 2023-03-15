@@ -1,0 +1,17 @@
+
+{% extends 'main.html' %}
+{% block title %}Edit Child | MSMS{% endblock %}
+{% block content %}
+<h1>
+  Edit a child
+</h1>
+
+<div class="container">
+  {% csrf_token %}
+  {% load crispy_forms_tags %}
+  {% crispy form %}
+  <a href="{% url 'delete_child' child.id %}" class="btn btn-danger">Delete Child</a>
+</div>
+
+
+{% endblock %}

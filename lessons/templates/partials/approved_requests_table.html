@@ -1,0 +1,39 @@
+{% load static %}
+
+<link href="{% static 'approved_requests_table.css' %}" rel="stylesheet">
+
+
+<div>
+    <div class = "col">
+        <h1>
+            Approved Requests:
+        </h1>
+    </div>
+    <table class="table table-light table-bordered table-hover table-sm table-striped">
+        <thead>
+        <tr class="tableHeader">
+            <th scope="col">#</th>
+            <th scope="col">Student</th>
+            <th scope="col">Class content</th>
+            <th scope="col">Submission date</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        {% for request in approved %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{% if request.child %}{{ request.child.name }}{% else %}{{request.user.first_name}} {{request.user.last_name }}{% endif %}</td>
+            <td>{{ request.lesson_content }}</td>
+            <td>{{ request.submission_date }}</td>
+            <td></td>
+            <td><a href = "{% url 'delete' requestId=request.request_id %}" class="btn btn-outline-warning">Delete</a></td>
+            <td><a href = "{% url 'approve' requestId=request.request_id %}" class="btn btn-outline-warning">Edit</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">There are currently no approved requests</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
